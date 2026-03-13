@@ -1,51 +1,92 @@
-body{
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
+@font-face {
+  font-family: "dvd";
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/86186/dvd.eot?bj2v8n");
+  src:
+    url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/86186/dvd.eot?bj2v8n#iefix")
+      format("embedded-opentype"),
+    url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/86186/dvd.ttf?bj2v8n")
+      format("truetype"),
+    url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/86186/dvd.woff?bj2v8n")
+      format("woff"),
+    url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/86186/dvd.svg?bj2v8n#icomoon")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
 }
 .bottom-button {
-    position: absolute;
-    bottom: 50%;           /* distance du bas */
-    right: 20px;              /* centre horizontal */
-    transform: translateX(-50%);
-    width: 5vw;
-    height: 5vw;
+  position: absolute;
+  bottom: 50%; /* distance du bas */
+  right: 20px; /* centre horizontal */
+  transform: translateX(-50%);
+  width: 5vw;
+  height: 5vw;
 
-    padding: 12px 24px;
-    font-size: 16px;
-    border: white;
-    border-radius: 50%;
+  padding: 12px 24px;
+  font-size: 16px;
+  border: white;
+  border-radius: 50%;
 
-    background-color: #582aff;
-    color: white;
-    cursor: pointer;
+  background-color: #582aff;
+  color: white;
+  cursor: pointer;
 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    transition: background 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background 0.2s ease;
 }
 
 .bottom-button:hover {
-    background-color: #235dff;
+  background-color: #235dff;
 }
 
-.wrapper{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .scope {
-    top: 50%;
-    scale: 50%;
+  top: 50%;
+  scale: 50%;
 }
 
 #camera-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover; /* remplit l'écran */
-    z-index: -1;       /* passe derrière le contenu */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover; /* remplit l'écran */
+  z-index: -1; /* passe derrière le contenu */
 }
+
+#monsters {
+  position: absolute;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  width: 400px;
+  height: 176px;
+  color: #fff;
+}
+
+#monsters:before {
+  font-family: "dvd" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\e900";
+  font-size: 175px;
+}
+
