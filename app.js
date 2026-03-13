@@ -21,21 +21,17 @@ async function startCamera(){
 
 }
 
-function checkOrientation(){
+function checkOrientation() {
 
     const overlay = document.getElementById("rotate-overlay");
 
-    if(!(window.innerHeight > window.innerWidth)){
-
+    if (window.innerHeight > window.innerWidth) {
+        // portrait
         overlay.style.display = "flex";
-
-    }
-    else{
-
+    } else {
+        // paysage
         overlay.style.display = "none";
-
     }
-
 }
 
 window.addEventListener("resize", checkOrientation);
