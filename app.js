@@ -25,7 +25,7 @@ function checkOrientation(){
 
     const overlay = document.getElementById("rotate-overlay");
 
-    if(window.innerHeight < window.innerWidth){
+    if(window.innerHeight > window.innerWidth){
 
         overlay.style.display = "flex";
 
