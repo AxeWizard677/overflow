@@ -1,11 +1,12 @@
 body{
-    width: 100%;
+    width: 100vw;
     height: 100vh;
+    margin: 0;
 }
 .bottom-button {
-    position: fixed;
-    bottom: 20px;           /* distance du bas */
-    left: 50%;              /* centre horizontal */
+    position: absolute;
+    bottom: 50%;           /* distance du bas */
+    right: 20px;              /* centre horizontal */
     transform: translateX(-50%);
     width: 5vw;
     height: 5vw;
@@ -40,18 +41,11 @@ body{
 }
 
 #camera-bg {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     object-fit: cover; /* remplit l'écran */
     z-index: -1;       /* passe derrière le contenu */
-}
-
-.content {
-    position: relative;
-    color: white;
-    text-align: center;
-    margin-top: 40vh;
 }
