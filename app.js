@@ -23,10 +23,8 @@ function checkOrientation() {
     const overlay = document.getElementById("rotate-overlay");
 
     if (window.innerHeight > window.innerWidth) {
-        // portrait -> ask user to rotate to landscape
         overlay.style.display = "flex";
     } else {
-        // landscape
         overlay.style.display = "none";
     }
 }
@@ -51,25 +49,22 @@ async function goFullscreen() {
             }
         }
 
-        if (screen.orientation && screen.orientation.lock) {
+        if (screen.orientation?.lock) {
             try {
                 await screen.orientation.lock("landscape");
             } catch (err) {
                 console.log("Orientation lock not supported:", err);
             }
         }
-
-        hideFullscreenPopup();
     } catch (err) {
         console.error("Fullscreen error:", err);
     }
 }
 
-const fullscreenButton = document.getElementById("fullscreen-btn");
-
-fullscreenButton.addEventListener("click", async () => {
+document.getElementById("fullscreen-btn").addEventListener("click", async () => {
     await startCamera();
     await goFullscreen();
+    hideFullscreenPopup();
     checkOrientation();
 });
 
@@ -82,19 +77,6 @@ document.addEventListener("fullscreenchange", () => {
     } else {
         showFullscreenPopup();
     }
-
-    checkOrientation();
-});
-
-document.addEventListener("webkitfullscreenchange", () => {
-    const isFullscreen = document.webkitFullscreenElement;
-
-    if (isFullscreen) {
-        hideFullscreenPopup();
-    } else {
-        showFullscreenPopup();
-    }
-
     checkOrientation();
 });
 
