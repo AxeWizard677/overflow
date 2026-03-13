@@ -107,7 +107,7 @@ body {
     position: absolute;
     right: 1vw;
     bottom: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(50%);
     display: inline-block;
     margin: 0;
     z-index: 1000;
@@ -117,7 +117,7 @@ body {
     color: white;
     font-family: Helvetica, sans-serif;
     font-weight: bold;
-    font-size: 36px;
+    font-size: 2vw;
     text-align: center;
     text-decoration: none;
     background-color: #FFA12B;
