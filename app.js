@@ -83,7 +83,7 @@ document.addEventListener("fullscreenchange", () => {
 });
 
 const visor = document.querySelector(".wrapper svg");
-const shootButton = document.querySelector(".button a");
+const shootButton = document.querySelector(".button span");
 
 shootButton.addEventListener("click", (event) => {
   event.preventDefault();
@@ -100,144 +100,69 @@ visor.addEventListener("animationend", () => {
 showFullscreenPopup();
 checkOrientation();
 
-var box = document.getElementById("monsters"),
-  win = window,
-  ww = win.innerWidth,
-  wh = win.innerHeight,
-  translateX = Math.floor(Math.random() * ww + 1),
-  translateY = Math.floor(Math.random() * wh + 1),
-  boxWidth = box.offsetWidth,
-  boxHeight = box.offsetHeight,
-  boxTop = box.offsetTop,
-  boxLeft = box.offsetLeft,
-  xMin = -boxLeft,
-  yMin = -boxTop,
-  xMax = win.innerWidth - boxLeft - boxWidth,
-  yMax = win.innerHeight - boxTop - boxHeight,
-  request = null,
-  direction = "se",
-  speed = 4,
-  timeout = null;
+// --- Bouncing monsters ---
+const speed = 3;
+const MONSTER_SIZE = 500;
 
-init();
-
-// reset constraints on resize
-window.addEventListener(
-  "resize",
-  function (argument) {
-    clearTimeout(timeout);
-    timeout = setTimeout(update, 100);
+const monsters = [
+  {
+    id: "monster-1",
+    x: Math.random() * (window.innerWidth - MONSTER_SIZE),
+    y: Math.random() * (window.innerHeight - MONSTER_SIZE),
+    dir: "se",
   },
-  false,
-);
+  {
+    id: "monster-2",
+    x: Math.random() * (window.innerWidth - MONSTER_SIZE),
+    y: Math.random() * (window.innerHeight - MONSTER_SIZE),
+    dir: "ne",
+  },
+  {
+    id: "monster-3",
+    x: Math.random() * (window.innerWidth - MONSTER_SIZE),
+    y: Math.random() * (window.innerHeight - MONSTER_SIZE),
+    dir: "sw",
+  },
+];
 
-function init() {
-  request = requestAnimationFrame(init);
-  move();
-  // setInterval(function() {
-  //   move();
-  // }, 16.66);
-}
+function animateMonsters() {
+  monsters.forEach((m) => {
+    const el = document.getElementById(m.id);
+    if (!el) return;
 
-// reset constraints
-function update() {
-  xMin = -boxLeft;
-  yMin = -boxTop;
-  xMax = win.innerWidth - boxLeft - boxWidth;
-  yMax = win.innerHeight - boxTop - boxHeight;
-}
+    const maxX = window.innerWidth - MONSTER_SIZE;
+    const maxY = window.innerHeight - MONSTER_SIZE;
 
-function move() {
-  setDirection();
-  setStyle(box, {
-    transform: "translate3d(" + translateX + "px, " + translateY + "px, 0)",
+    if (m.dir.includes("e")) m.x += speed;
+    else m.x -= speed;
+
+    if (m.dir.includes("s")) m.y += speed;
+    else m.y -= speed;
+
+    // Clamp and bounce
+    if (m.x <= 0) {
+      m.x = 0;
+      m.dir = m.dir.replace("w", "e");
+    }
+    if (m.x >= maxX) {
+      m.x = maxX;
+      m.dir = m.dir.replace("e", "w");
+    }
+    if (m.y <= 0) {
+      m.y = 0;
+      m.dir = m.dir.replace("n", "s");
+    }
+    if (m.y >= maxY) {
+      m.y = maxY;
+      m.dir = m.dir.replace("s", "n");
+    }
+
+    el.style.transform = `translate3d(${m.x}px, ${m.y}px, 0)`;
   });
+
+  requestAnimationFrame(animateMonsters);
 }
 
-function setDirection() {
-  switch (direction) {
-    case "ne":
-      translateX += speed;
-      translateY -= speed;
-      break;
-    case "nw":
-      translateX -= speed;
-      translateY -= speed;
-      break;
-    case "se":
-      translateX += speed;
-      translateY += speed;
-      break;
-    case "sw":
-      translateX -= speed;
-      translateY += speed;
-      break;
-  }
-  setLimits();
-}
-
-function setLimits() {
-  if (translateY <= yMin) {
-    if (direction == "nw") {
-      direction = "sw";
-    } else if (direction == "ne") {
-      direction = "se";
-    }
-  }
-  if (translateY >= yMax) {
-    if (direction == "se") {
-      direction = "ne";
-    } else if (direction == "sw") {
-      direction = "nw";
-    }
-  }
-  if (translateX <= xMin) {
-    if (direction == "nw") {
-      direction = "ne";
-    } else if (direction == "sw") {
-      direction = "se";
-    }
-  }
-  if (translateX >= xMax) {
-    if (direction == "ne") {
-      direction = "nw";
-    } else if (direction == "se") {
-      direction = "sw";
-    }
-  }
-}
-
-function getVendor() {
-  var ua = navigator.userAgent.toLowerCase(),
-    match =
-      /opera/.exec(ua) ||
-      /msie/.exec(ua) ||
-      /firefox/.exec(ua) ||
-      /(chrome|safari)/.exec(ua) ||
-      /trident/.exec(ua),
-    vendors = {
-      opera: "-o-",
-      chrome: "-webkit-",
-      safari: "-webkit-",
-      firefox: "-moz-",
-      trident: "-ms-",
-      msie: "-ms-",
-    };
-
-  return vendors[match[0]];
-}
-
-function setStyle(element, properties) {
-  var prefix = getVendor(),
-    property,
-    css = "";
-  for (property in properties) {
-    css += property + ": " + properties[property] + ";";
-    css += prefix + property + ": " + properties[property] + ";";
-  }
-  element.style.cssText += css;
-}
-
-lockOrientation();
+animateMonsters();
 
 startCamera();
