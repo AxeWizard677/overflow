@@ -1,36 +1,45 @@
-async function startCamera() {
-    try {
+async function startCamera(){
+
+    try{
+
         const stream = await navigator.mediaDevices.getUserMedia({
-        video: {
-            facingMode: { ideal: "environment" }
-        },
-        audio: false
+            video:{
+                facingMode:{ ideal:"environment" }
+            },
+            audio:false
         });
 
         const video = document.getElementById("camera-bg");
         video.srcObject = stream;
 
-    } catch (err) {
-        console.error("Camera access denied:", err);
     }
+    catch(err){
+
+        console.error("Camera access denied:", err);
+
+    }
+
 }
 
-function checkOrientation() {
+function checkOrientation(){
 
     const overlay = document.getElementById("rotate-overlay");
 
-    if (window.innerHeight < window.innerWidth) {
-        // paysage
+    if(window.innerHeight < window.innerWidth){
+
         overlay.style.display = "flex";
-    } else {
-        // portrait
-        overlay.style.display = "none";
+
     }
+    else{
+
+        overlay.style.display = "none";
+
+    }
+
 }
 
 window.addEventListener("resize", checkOrientation);
 window.addEventListener("orientationchange", checkOrientation);
 
 checkOrientation();
-
 startCamera();
