@@ -11,7 +11,6 @@ body {
   position: relative;
 }
 
-/* camera background */
 #camera-bg {
   position: fixed;
   inset: 0;
@@ -21,7 +20,6 @@ body {
   z-index: -2;
 }
 
-/* main wrapper */
 .wrapper {
   width: 100%;
   height: 100%;
@@ -30,7 +28,6 @@ body {
   align-items: center;
 }
 
-/* rotate overlay */
 #rotate-overlay {
   position: fixed;
   inset: 0;
@@ -68,7 +65,6 @@ body {
   }
 }
 
-/* fullscreen popup */
 #fullscreen-popup {
   position: fixed;
   inset: 0;
@@ -104,13 +100,11 @@ body {
 .fullscreen-button:hover {
   background: #235dff;
 }
-
 .fullscreen-button:active {
   transform: scale(0.97);
 }
 
-/* button */
-
+/* Shoot button */
 .button {
   position: absolute;
   right: 1vw;
@@ -132,14 +126,14 @@ body {
   display: block;
   position: relative;
   padding: 20px 40px;
-
+  cursor: pointer;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   text-shadow: 0px 1px 0px #000;
-
   box-shadow:
     inset 0 1px 0 #ffe5c4,
     0 10px 0 #915100;
   border-radius: 5px;
+  user-select: none;
 }
 
 .button span:active {
@@ -163,11 +157,10 @@ body {
   border-radius: 5px;
 }
 
+/* Visor */
 .wrapper svg {
   transition: transform 0.2s;
-  z-index: 999;
 }
-
 .wrapper svg.shoot {
   animation: shootBounce 0.1s ease;
 }
@@ -176,32 +169,36 @@ body {
   0% {
     transform: scale(1);
   }
-
   25% {
     transform: scale(0.95);
   }
-
   60% {
     transform: scale(1.1);
   }
-
   100% {
     transform: scale(1);
   }
 }
 
+/*
+  Monsters: fixed at top-left, JS only sets translate().
+  Size is controlled here with vmin so it's always relative to screen.
+  10vmin = 10% of the smallest screen dimension, works on any screen size.
+*/
 .monster {
   position: fixed;
   top: 0;
   left: 0;
-  width: 300px;
-  height: 300px;
+  width: 10vmin;
+  height: 10vmin;
   z-index: 500;
 }
 
 .monster img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
+  transform-origin: center center;
   transform: rotate(-90deg);
 }
