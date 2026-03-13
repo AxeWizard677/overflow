@@ -80,5 +80,20 @@ document.addEventListener("fullscreenchange", () => {
     checkOrientation();
 });
 
+const visor = document.querySelector(".wrapper svg");
+const shootButton = document.querySelector(".button a");
+
+shootButton.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    visor.classList.remove("shoot");
+    void visor.offsetWidth;
+    visor.classList.add("shoot");
+});
+
+visor.addEventListener("animationend", () => {
+    visor.classList.remove("shoot");
+});
+
 showFullscreenPopup();
 checkOrientation();

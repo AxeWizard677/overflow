@@ -103,24 +103,79 @@ body {
 
 /* button */
 
-.bottom-button{
-    position:fixed;
-    bottom:50%;
-    right:1vw;
-
-    width:60px;
-    height:60px;
-
-    border:none;
-    border-radius:50%;
-
-    background:#582aff;
-    cursor:pointer;
-
-    box-shadow:0 4px 10px rgba(0,0,0,0.3);
-    transition:0.2s;
+.button {
+    position: absolute;
+    right: 1vw;
+    bottom: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    margin: 0;
+    z-index: 1000;
 }
 
-.bottom-button:hover{
-    background:#235dff;
+.button a {
+    color: white;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #FFA12B;
+    display: block;
+    position: relative;
+    padding: 20px 40px;
+
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    text-shadow: 0px 1px 0px #000;
+
+    box-shadow: inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
+    border-radius: 5px;
+}
+
+.button a:active {
+    top: 10px;
+    background-color: #F78900;
+    box-shadow: inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;
+}
+
+.button::after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    padding: 4px;
+    position: absolute;
+    bottom: -15px;
+    left: -4px;
+    z-index: -1;
+    background-color: #2B1800;
+    border-radius: 5px;
+}
+
+
+.wrapper svg {
+    transition: transform 0.2s;
+}
+
+.wrapper svg.shoot {
+    animation: shootBounce 0.1s ease;
+}
+
+@keyframes shootBounce {
+
+    0% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(0.95);
+    }
+
+    60% {
+        transform: scale(1.10);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
 }
