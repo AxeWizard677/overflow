@@ -38,3 +38,20 @@ body{
     top: 50%;
     scale: 50%;
 }
+
+#camera-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; /* remplit l'écran */
+    z-index: -1;       /* passe derrière le contenu */
+}
+
+.content {
+    position: relative;
+    color: white;
+    text-align: center;
+    margin-top: 40vh;
+}
