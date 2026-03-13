@@ -1,181 +1,229 @@
 html,
 body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    overflow: hidden;
-    touch-action: none;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  touch-action: none;
 }
 
 body {
-    position: relative;
+  position: relative;
 }
 
 /* camera background */
 #camera-bg {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    z-index: -2;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -2;
 }
 
 /* main wrapper */
 .wrapper {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* rotate overlay */
 #rotate-overlay {
-    position: fixed;
-    inset: 0;
-    background: black;
-    color: white;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
+  position: fixed;
+  inset: 0;
+  background: black;
+  color: white;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
 
 .rotate-box {
-    text-align: center;
-    padding: 24px;
+  text-align: center;
+  padding: 24px;
 }
 
 .phone {
-    width: 40px;
-    height: 70px;
-    border: 4px solid white;
-    border-radius: 10px;
-    margin: auto auto 16px auto;
-    animation: rotatePhone 1.5s infinite ease-in-out;
+  width: 40px;
+  height: 70px;
+  border: 4px solid white;
+  border-radius: 10px;
+  margin: auto auto 16px auto;
+  animation: rotatePhone 1.5s infinite ease-in-out;
 }
 
 @keyframes rotatePhone {
-    0%   { transform: rotate(0deg); }
-    50%  { transform: rotate(90deg); }
-    100% { transform: rotate(0deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 /* fullscreen popup */
 #fullscreen-popup {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(8px);
-    z-index: 9000;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  z-index: 9000;
 }
 
 #fullscreen-popup.hidden {
-    display: none;
+  display: none;
 }
 
 .fullscreen-button {
-    min-width: 220px;
-    min-height: 64px;
-    padding: 16px 28px;
-    border: none;
-    border-radius: 999px;
-    background: #582aff;
-    color: white;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-    transition: transform 0.2s ease, background 0.2s ease;
+  min-width: 220px;
+  min-height: 64px;
+  padding: 16px 28px;
+  border: none;
+  border-radius: 999px;
+  background: #582aff;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
 }
 
 .fullscreen-button:hover {
-    background: #235dff;
+  background: #235dff;
 }
 
 .fullscreen-button:active {
-    transform: scale(0.97);
+  transform: scale(0.97);
 }
 
 /* button */
 
 .button {
-    position: absolute;
-    right: 1vw;
-    bottom: 50%;
-    transform: translateX(-50%) translateY(50%);
-    display: inline-block;
-    margin: 0;
-    z-index: 1000;
+  position: absolute;
+  right: 1vw;
+  bottom: 50%;
+  transform: translateX(-50%) translateY(50%);
+  display: inline-block;
+  margin: 0;
+  z-index: 1000;
 }
 
 .button a {
-    color: white;
-    font-family: Helvetica, sans-serif;
-    font-weight: bold;
-    font-size: 2vw;
-    text-align: center;
-    text-decoration: none;
-    background-color: #FFA12B;
-    display: block;
-    position: relative;
-    padding: 20px 40px;
+  color: white;
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 2vw;
+  text-align: center;
+  text-decoration: none;
+  background-color: #ffa12b;
+  display: block;
+  position: relative;
+  padding: 20px 40px;
 
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    text-shadow: 0px 1px 0px #000;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  text-shadow: 0px 1px 0px #000;
 
-    box-shadow: inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
-    border-radius: 5px;
+  box-shadow:
+    inset 0 1px 0 #ffe5c4,
+    0 10px 0 #915100;
+  border-radius: 5px;
 }
 
 .button a:active {
-    top: 10px;
-    background-color: #F78900;
-    box-shadow: inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;
+  top: 10px;
+  background-color: #f78900;
+  box-shadow:
+    inset 0 1px 0 #ffe5c4,
+    inset 0 -3px 0 #915100;
 }
 
 .button::after {
-    content: "";
-    height: 100%;
-    width: 100%;
-    padding: 4px;
-    position: absolute;
-    bottom: -15px;
-    left: -4px;
-    z-index: -1;
-    background-color: #2B1800;
-    border-radius: 5px;
+  content: "";
+  height: 100%;
+  width: 100%;
+  padding: 4px;
+  position: absolute;
+  bottom: -15px;
+  left: -4px;
+  z-index: -1;
+  background-color: #2b1800;
+  border-radius: 5px;
 }
 
-
 .wrapper svg {
-    transition: transform 0.2s;
+  transition: transform 0.2s;
 }
 
 .wrapper svg.shoot {
-    animation: shootBounce 0.1s ease;
+  animation: shootBounce 0.1s ease;
 }
 
 @keyframes shootBounce {
+  0% {
+    transform: scale(1);
+  }
 
-    0% {
-        transform: scale(1);
-    }
+  25% {
+    transform: scale(0.95);
+  }
 
-    25% {
-        transform: scale(0.95);
-    }
+  60% {
+    transform: scale(1.1);
+  }
 
-    60% {
-        transform: scale(1.10);
-    }
+  100% {
+    transform: scale(1);
+  }
+}
 
-    100% {
-        transform: scale(1);
-    }
+@font-face {
+  font-family: "dvd";
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/86186/dvd.eot?bj2v8n");
+  src:
+    url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/86186/dvd.eot?bj2v8n#iefix")
+      format("embedded-opentype"),
+    url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/86186/dvd.ttf?bj2v8n")
+      format("truetype"),
+    url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/86186/dvd.woff?bj2v8n")
+      format("woff"),
+    url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/86186/dvd.svg?bj2v8n#icomoon")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+#monsters {
+  position: absolute;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  width: 400px;
+  height: 176px;
+  color: #fff;
+}
 
+#monsters:before {
+  font-family: "dvd" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\e900";
+  font-size: 175px;
 }
